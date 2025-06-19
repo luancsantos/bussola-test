@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('payment_type_id')->nullable()->index();            
+            $table->string('name');
+            $table->string('card_number');
+            $table->string('valid_date');
+            $table->string('cvv');
+            $table->string('value');
+            $table->string('installment');            
             $table->timestamps();
         });
     }
