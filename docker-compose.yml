@@ -1,0 +1,61 @@
+services:
+  #Laravel App
+  app:
+    build:
+      args:
+        user: maruan
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: laravel-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    environment:
+      - "DB_PORT=${DB_PORT}"
+      - "DB_HOST=${DB_HOST}"
+      - "DB_USER=${DB_USERNAME}"
+      - "DB_PASS=${DB_PASSWORD}"
+      - "DB_DATABASE=${DB_DATABASE}"
+      - "DB_SCHEMA=${DB_SCHEMA}"
+    networks:
+      - mynetwork
+
+  #Nginx Service
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d:/etc/nginx/conf.d/
+    networks:
+      - mynetwork 
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "123456"
+    ports:
+      - "15432:5432"
+    networks:
+      - mynetwork
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "luan.santos@homejobs.com.br"
+      PGADMIN_DEFAULT_PASSWORD: "123456"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
