@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('payments_type', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('max_installment');
             $table->timestamps();
         });
     }
