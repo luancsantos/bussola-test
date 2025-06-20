@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Order\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\PaymentType;
+use App\Domain\PaymentType\Models\PaymentType;
 
 class Order extends Model
 {
+    protected $table = 'orders';
     protected $fillable = [
         'payment_type_id',
         'name',
