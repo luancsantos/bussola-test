@@ -47,7 +47,7 @@ class OrderBag
         }
 
         $data = $validator->validate();
-        $data['user_created'] = Auth::user()->id;
+        //$data['user_created'] = Auth::user()->id;
 
         return new self($data);
         

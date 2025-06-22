@@ -16,16 +16,16 @@ class CreateOrderAction
     }
 
     public function execute($data)
-    {        
+    {   
         return $this->orderRepository->create([                        
-            'payment_type_id' => $data->payment_type_id,
-            'name' => $data->name,
-            'card_number' => $data->card_number,
-            'valid_date' => $data->valid_date,
-            'cvv' => $data->cvv,
-            'value' => $data->value,
-            'installment' => $data->installment,
-            'user_id' => Auth::user()->id
+            'payment_type_id' => $data->attributes()['payment_type_id'],
+            'name' => $data->attributes()['name'],
+            'card_number' => $data->attributes()['card_number'],
+            'valid_date' => $data->attributes()['valid_date'],
+            'cvv' => $data->attributes()['cvv'],
+            'value' => '100',
+            'installment' => $data->attributes()['installment'],
+            'user_id' => 2
         ]);
     }
 }

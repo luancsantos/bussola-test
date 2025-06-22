@@ -6,7 +6,6 @@ use App\Api\Resources\OrderResource;
 use App\Domain\Order\Actions\CreateOrderAction;
 use App\Domain\Order\Bags\OrderBag;
 use App\Api\Requests\CreateOrderRequest;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -17,10 +16,8 @@ class OrderController extends Controller
     }
 
     public function create(CreateOrderRequest $request)
-    {      
-        dd($request->name);
-        return 1;
-        // $positionBag = OrderBag::fromRequest($request);
-        // return OrderResource::make($this->createOrderAction->execute($positionBag));
+    {   
+        $positionBag = OrderBag::fromRequest($request);
+        return OrderResource::make($this->createOrderAction->execute($positionBag));
     }
 }
