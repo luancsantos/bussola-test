@@ -9,7 +9,7 @@ class Order extends Model
 {
     protected $table = 'orders';
     public const PAYMENT_TYPE_PIX = 1;
-    public const PAYMENT_TYPE_CREDIT_CARD = 1;
+    public const PAYMENT_TYPE_CREDIT_CARD = 2;
     
     protected $fillable = [
         'payment_type_id',
