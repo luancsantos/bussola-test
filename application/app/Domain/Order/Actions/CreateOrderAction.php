@@ -22,12 +22,12 @@ class CreateOrderAction
 
     public function execute($data)
     {   
-        if($data->attributes()['payment_type_id'] === Order::PAYMENT_TYPE_PIX ) {
+        if($data->attributes()['payment_type_id'] === Order::PAYMENT_TYPE_CREDIT_CARD &&
+         $data->attributes()['installment'] > 1) {
             dd($this->calculateDiscountAction->execute(1.000));
         }
 /*|| 
-        ($data->attributes()['payment_type_id'] === Order::PAYMENT_TYPE_CREDIT_CARD &&
-         $data->attributes()['installment'] === 1)*/
+        */
         
 
         return $this->orderRepository->create([                        
