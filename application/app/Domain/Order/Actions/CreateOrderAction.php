@@ -33,9 +33,9 @@ class CreateOrderAction
         
         if($data->attributes()['payment_type_id'] === Order::PAYMENT_TYPE_CREDIT_CARD &&
          $data->attributes()['installment'] > 1) {
-            $value = $this->calculateInterestAction->execute($product->price);
+            $value = $this->calculateInterestAction->execute(floatval($product->price));
         } else {
-            $value = $this->calculateDiscountAction->execute($product->price);
+            $value = $this->calculateDiscountAction->execute(floatval($product->price));
         }        
         dd($value);
         return $this->orderRepository->create([                        
