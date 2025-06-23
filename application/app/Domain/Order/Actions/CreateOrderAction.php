@@ -45,7 +45,7 @@ class CreateOrderAction
             'card_number' => $data->attributes()['card_number'],
             'valid_date' => $data->attributes()['valid_date'],
             'cvv' => $data->attributes()['cvv'],
-            'value' => $value,
+            'value' => $finalValue,
             'installment' => $data->attributes()['installment'],
             'user_id' => 2
         ]);
