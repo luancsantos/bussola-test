@@ -33,11 +33,12 @@ class CreateOrderAction
         
         if($data->attributes()['payment_type_id'] === Order::PAYMENT_TYPE_CREDIT_CARD &&
          $data->attributes()['installment'] > 1) {
-            $value = $this->calculateInterestAction->execute(floatval($product->price));
+            $value = $this->calculateInterestAction->execute(floatval($product->price), $data->attributes()['installment']);
         } else {
             $value = $this->calculateDiscountAction->execute(floatval($product->price));
         }        
-        dd($value);
+        $finalValue = $this->formatValuetoReal($value);
+        dd($finalValue);
         return $this->orderRepository->create([                        
             'payment_type_id' => $data->attributes()['payment_type_id'],
             'name' => $data->attributes()['name'],
@@ -50,4 +51,7 @@ class CreateOrderAction
         ]);
     }
 
+    public function formatValuetoReal(float $value): string {
+        return number_format($value, 3, '.', ',');
+    }
 }
