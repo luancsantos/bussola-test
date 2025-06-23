@@ -1,5 +1,5 @@
 <?php
-namespace App\Domain\Order\Actions;
+namespace App\Domain\Product\Actions;
 
 use App\Domain\Product\Repositories\ProductRepository;
 
@@ -14,7 +14,7 @@ class GetProductByIdAction
         $this->productRepository = $productRepository;        
     }
 
-    public function execute($id): array
+    public function execute($id): object
     {   
         return $this->productRepository->find($id);;
     }
