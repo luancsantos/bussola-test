@@ -38,3 +38,24 @@ Run migrations
 
 Run the app
 > php artisan serve
+
+
+##### example json to response api
+
+```
+{
+    "payment_type_id" : 1,
+    "name" : "Luan costa dos santos",
+    "card_number" : "4848000088887777",
+    "valid_date" : "12/2036",
+    "cvv" : "484",    
+    "installment" : "12",
+    "id_product" : 2
+}
+```
+
+##### endpoint 
+```
+post http://127.0.0.1:8000/api/v1/orders
+```
+
