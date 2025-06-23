@@ -12,10 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Product::create(['name' => 'Iphone 16', 'price' => '5000']);
-        Product::create(['name' => 'Iphone 16 Pro Max', 'price' => '15000']);
-        Product::create(['name' => 'Iphone 16 Pro', 'price' => '10000']);
-        Product::create(['name' => 'Iphone 15', 'price' => '4000']);
-        Product::create(['name' => 'Iphone 14', 'price' => '3000']);
+        Product::create(['name' => 'Iphone 16', 'price' => '5.000']);
+        Product::create(['name' => 'Iphone 16 Pro Max', 'price' => '15.000']);
+        Product::create(['name' => 'Iphone 16 Pro', 'price' => '10.000']);
+        Product::create(['name' => 'Iphone 15', 'price' => '4.000']);
+        Product::create(['name' => 'Iphone 14', 'price' => '3.000']);
     }
 };
