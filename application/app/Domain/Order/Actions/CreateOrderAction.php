@@ -29,7 +29,7 @@ class CreateOrderAction
 
     public function execute($data)
     {   
-        $product = $this->getProductByIdAction->execute($data->attributes()['id_product']);
+        $product = $this->getProductByIdAction->execute($data->attributes()['id_product']);        
         
         if($data->attributes()['payment_type_id'] === Order::PAYMENT_TYPE_CREDIT_CARD &&
          $data->attributes()['installment'] > 1) {
@@ -37,7 +37,7 @@ class CreateOrderAction
         } else {
             $value = $this->calculateDiscountAction->execute(floatval($product->price));
         } 
-               
+
         $finalValue = $this->formatValuetoReal($value);
         
         return $this->orderRepository->create([                        
@@ -48,7 +48,8 @@ class CreateOrderAction
             'cvv' => $data->attributes()['cvv'],
             'value' => $finalValue,
             'installment' => $data->attributes()['installment'],
-            'user_id' => 2
+            'user_id' => 2,
+            'product_id' => $product->id,
         ]);
     }
 
