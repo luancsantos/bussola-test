@@ -36,9 +36,10 @@ class CreateOrderAction
             $value = $this->calculateInterestAction->execute(floatval($product->price), $data->attributes()['installment']);
         } else {
             $value = $this->calculateDiscountAction->execute(floatval($product->price));
-        }        
+        } 
+               
         $finalValue = $this->formatValuetoReal($value);
-        dd($finalValue);
+        
         return $this->orderRepository->create([                        
             'payment_type_id' => $data->attributes()['payment_type_id'],
             'name' => $data->attributes()['name'],
