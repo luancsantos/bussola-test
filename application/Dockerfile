@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     libwebp-dev \
     libxpm-dev \
+    librdkafka-dev \
     libfreetype6-dev \
     libzip-dev \
     zip \
@@ -23,6 +24,10 @@ RUN apt-get update && apt-get install -y \
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install gd \
     && docker-php-ext-install pdo pdo_pgsql mbstring zip exif pcntl bcmath opcache
+
+
+RUN pecl install rdkafka \
+    && docker-php-ext-enable rdkafka
 
 # Install Composer
 COPY --from=composer/composer:latest-bin /composer /usr/bin/composer
